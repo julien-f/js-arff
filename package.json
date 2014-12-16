@@ -36,5 +36,8 @@
   "scripts": {
     "test": "mocha --require must *.spec.js",
     "prepublish": "pegjs arff.pegjs parser.js"
+  },
+  "dependencies": {
+    "moment": "^2.8.4"
   }
 }

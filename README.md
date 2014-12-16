@@ -1,6 +1,6 @@
 # arff [![Build Status](https://travis-ci.org/julien-f/js-arff.png?branch=master)](https://travis-ci.org/julien-f/js-arff)
 
-> ARFF parsing and formatting
+> [ARFF](http://www.cs.waikato.ac.nz/ml/weka/arff.html) parsing and formatting
 
 *Notice: this module is in development and ARFF encoding is not working.*
 
@@ -41,48 +41,58 @@ For the folling `data.arff`:
 
 @DATA
 root,?,admin
-julien-f,2014-12-16,write
+julien-f,2014-12-16T19:42:01,write
 ```
 
 It will give this output:
 
-```json
+```js
 {
-  "relation": "user",
-  "attributes": [
+  relation: 'user',
+  attributes: [
     {
-      "name": "name",
-      "type": "string"
+      name: 'name',
+      type: 'string'
     },
     {
-      "name": "lastSignIn",
-      "type": "date"
+      name: 'lastSignIn',
+      type: 'date'
     },
     {
-      "name": "name",
-      "type": "enum",
-      "values": [
-        "none",
-        "read",
-        "write",
-        "admin"
+      name: 'name',
+      type: 'enum',
+      values: [
+        'none',
+        'read',
+        'write',
+        'admin'
       ]
     }
   ],
-  "data": [
-    [
-      "root",
-      "?",
-      "admin"
-    ],
-    [
-      "julien-f",
-      "2014-12-16",
-      "write"
-    ]
+  data: [
+    {
+      name: 'root',
+      group: 'admin'
+    },
+    {
+      name: 'julien-f',
+      lastSignIn: '2014-12-16T19:42:01',
+      group: 'write'
+    }
   ]
 }
 ```
+
+## Contributing
+
+Contributions are *very* welcome, either on the documentation or on
+the code.
+
+You may:
+
+- report any [issue](https://github.com/julien-f/human-format/issues)
+  you've encountered;
+- fork and create a pull request.
 
 ## License
 

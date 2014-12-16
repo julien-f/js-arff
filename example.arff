@@ -1,26 +1,17 @@
-% 1. Title: Iris Plants Database
-%
-% 2. Sources:
-%      (a) Creator: R.A. Fisher
-%      (b) Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)
-%      (c) Date: July, 1988
-%
-@RELATION iris
+% Comments starts a %.
 
-@ATTRIBUTE sepallength  NUMERIC
-@ATTRIBUTE sepalwidth   NUMERIC
-@ATTRIBUTE petallength  NUMERIC
-@ATTRIBUTE petalwidth   NUMERIC
-@ATTRIBUTE class        {Iris-setosa,Iris-versicolor,Iris-virginica}
+% A relation MAY be named.
+@RELATION foo
+
+% Default date format is YYYY-MM-DD'T'HH:mm:ss
+@ATTRIBUTE date date
+@ATTRIBUTE dateWithFormat date "MM/DD/YY"
+@ATTRIBUTE numeric numeric
+@ATTRIBUTE string string
+@ATTRIBUTE enumerate {foo,"bar",'baz'}
 
 @DATA
-5.1,3.5,1.4,0.2,Iris-setosa
-4.9,3.0,1.4,0.2,Iris-setosa
-4.7,3.2,1.3,0.2,Iris-setosa
-4.6,3.1,1.5,0.2,Iris-setosa
-5.0,3.6,1.4,0.2,Iris-setosa
-5.4,3.9,1.7,0.4,Iris-setosa
-4.6,3.4,1.4,0.3,Iris-setosa
-5.0,3.4,1.5,0.2,Iris-setosa
-4.4,2.9,1.4,0.2,Iris-setosa
-4.9,3.1,1.5,0.1,Iris-setosa
+2014-12-16T19:42:01,06/23/15,3.259,'can have spaces',bar
+
+% `?` denote an unknown value, similarly missing values are unknown.
+2014-12-16T19:42:01,?,42

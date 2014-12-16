@@ -5,14 +5,63 @@
 // Source: http://www.cs.waikato.ac.nz/ml/weka/arff.html
 
 {
-	// Declarations
+
+	var moment = require('moment');
+
+	var attributes = [];
+	function registerAttribute(name, type) {
+		if (typeof type === 'string') {
+			type = {
+				type: type,
+			}
+		}
+
+		type.name = name;
+
+		attributes.push(type);
+	}
+
+	function makeDatum(fields) {
+		var datum = {};
+		fields.forEach(function (value, index) {
+			if (value === undefined) {
+				return;
+			}
+
+			var attr = attributes[index];
+			if (!attr) {
+				return;
+			}
+
+			var type = attr.type;
+			if (type === 'date') {
+				value = moment.utc(value, attr.format).toDate();
+			} else if (type === 'numeric') {
+				value = +value;
+			} else if (type === 'enum') {
+				if (attr.values.indexOf(value) === -1) {
+					throw new Error(
+						value +' is not valid for the '+ attr.name + ' attribute'
+					);
+				}
+			}
+
+			datum[attr.name] = value;
+		});
+
+		return datum;
+	}
 }
 
 start =
 	separator?
 	relation:relation?
 	separator
-	attributes:attributes
+	attribute
+	(
+		separator
+		attribute
+	)*
 	separator
 	data:data
 	separator? {
@@ -40,86 +89,92 @@ relation = '@relation'i ws+ name:string {
 //====================================================================
 // Attribute
 
-attributes =
-	first:attribute
-	rest:(separator attribute:attribute { return attribute; })* {
-		rest.unshift(first);
-		return rest;
-	}
-
 attribute = '@attribute'i ws+ name:string ws+ type:type {
-	return type.length ? {
-		name: name,
-		type: 'enum',
-		values: type
-	} : {
-		name: name,
-		type: type
-	};
+	registerAttribute(name, type);
 }
 
 type
-	= 'date'i { return 'date'; }
+	= date
 	/ class
-	/ 'numeric'i { return 'numeric'; }
-	/ 'string'i { return 'string'; }
+	/ 'numeric'i {
+		return 'numeric';
+	}
+	/ 'string'i {
+		return 'string';
+	}
+
+date 'date'
+	= 'date'i ws+ format:string {
+		return {
+			type: 'date',
+			format: format
+		};
+	}
+	/ 'date'i {
+		return 'date';
+	}
 
 class 'class' = '{' first:string rest:(',' value:string { return value; })* '}' {
 	rest.unshift(first);
-	return rest;
+	return {
+		type: 'enum',
+		values: rest
+	};
 }
 
 //====================================================================
 // Data
 
-data = '@data'i values:(nl datum:datum { return datum; })* {
+data = '@data'i values:(separator datum:datum { return datum; })* {
 	return values;
 }
 
 datum = first:value rest:(',' value:value { return value; })* {
 	rest.unshift(first);
-	return rest;
+	return makeDatum(rest);
 }
 
-value = unknown / string
-
-unknown = '?'
+value
+	=  '?' {
+		// undefined
+	}
+	/ string
 
 //====================================================================
 // String
 // See https://github.com/pegjs/pegjs/blob/fba70833dd93d61cc1574b855a67ff6af71dfe40/examples/json.pegjs#L101
 
-string 'string'
-	= chars:[0-9a-zA-Z-_.]+ { return chars.join(''); }
-	/ quotation_mark chars:char* quotation_mark {
+string 'string' = chars:(rawString / singleQuotedString / doubleQuotedString) {
 	return chars.join('');
 }
 
-quotation_mark = '"'
+rawString = [^ \r\n\t'",]i+
 
-char
-	= unescaped
-	/ escape sequence:(
-		  '"'
-		/ '\\'
-		/ '/'
-		/ 'b' { return '\b'; }
-		/ 'f' { return '\f'; }
-		/ 'n' { return '\n'; }
-		/ 'r' { return '\r'; }
-		/ 't' { return '\t'; }
-		/ 'u' digits:$(HEXDIG HEXDIG HEXDIG HEXDIG) {
-			return String.fromCharCode(parseInt(digits, 16));
-		}
-	) { return sequence; }
+singleQuotedString = "'" chars:([^'\\] / escapedChar)* "'" {
+	return chars;
+}
 
-unescaped = [\x20-\x21\x23-\x5B\x5D-\u10FFFF]
+doubleQuotedString = '"' chars:([^"\\] / escapedChar)* '"' {
+	return chars;
+}
 
-escape = '\\'
+escapedChar 'escaped char' = '\\' sequence:(
+		"'"
+	/ '"'
+	/ '\\'
+	/ '/'
+	/ 'b' { return '\b'; }
+	/ 'f' { return '\f'; }
+	/ 'n' { return '\n'; }
+	/ 'r' { return '\r'; }
+	/ 't' { return '\t'; }
+	/ 'u' digits:$(HEXDIG HEXDIG HEXDIG HEXDIG) {
+		return String.fromCharCode(parseInt(digits, 16));
+	}
+) {
+	return sequence;
+}
 
-// Core ABNF Rules
-// See RFC 4234, Appendix B (http://tools.ietf.org/html/rfc4627).
-DIGIT = [0-9]
 HEXDIG = [0-9a-f]i
 
 //====================================================================

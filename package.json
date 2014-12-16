@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "name": "arff",
+  "version": "0.0.0",
+  "license": "ISC",
+  "description": "ARFF parsing and formatting",
+  "keywords": [
+    "arff",
+    "parse",
+    "format",
+    "decode",
+    "encode",
+    "stringify",
+    "weka"
+  ],
+  "homepage": "https://github.com/julien-f/js-arff",
+  "bugs": "https://github.com/julien-f/js-arff/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/julien-f/js-arff"
+  },
+  "author": {
+    "name": "Julien Fontanet",
+    "email": "julien.fontanet@isonoe.net"
+  },
+  "preferGlobal": false,
+  "files": [
+    "index.js",
+    "parser.js"
+  ],
+  "devDependencies": {
+    "mocha": "*",
+    "must": "*",
+    "pegjs": "^0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --require must *.spec.js",
+    "prepublish": "pegjs arff.pegjs parser.js"
+  }
+}

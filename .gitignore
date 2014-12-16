@@ -1,0 +1,10 @@
+/bower_components/
+/dist/
+
+npm-debug.log
+
+!node_modules/*
+node_modules/*/
+
+# Generated from arff.pegjs.
+/parser.js

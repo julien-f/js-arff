@@ -38,6 +38,7 @@
     "prepublish": "pegjs arff.pegjs parser.js"
   },
   "dependencies": {
+    "lodash.foreach": "^2.4.1",
     "moment": "^2.8.4"
   }
 }

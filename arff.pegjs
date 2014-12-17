@@ -5,7 +5,7 @@
 // Source: http://www.cs.waikato.ac.nz/ml/weka/arff.html
 
 {
-
+	var forEach = require('lodash.foreach');
 	var moment = require('moment');
 
 	var attributes = [];
@@ -23,7 +23,7 @@
 
 	function makeDatum(fields) {
 		var datum = {};
-		fields.forEach(function (value, index) {
+		forEach(fields, function (value, index) {
 			if (value === undefined) {
 				return;
 			}

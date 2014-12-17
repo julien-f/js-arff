@@ -2,8 +2,6 @@
 
 > [ARFF](http://www.cs.waikato.ac.nz/ml/weka/arff.html) parsing and formatting
 
-*Notice: this module is in development and ARFF encoding is not working.*
-
 ## Install
 
 Download [manually](https://github.com/julien-f/js-arff/releases) or with package-manager.
@@ -18,6 +16,11 @@ Download [manually](https://github.com/julien-f/js-arff/releases) or with packag
 
 ```javascript
 var arff = require('arff');
+```
+
+### Parsing
+
+```javascript
 var readFile = require('fs').readFile;
 
 readFile('data.arff', 'utf8', function (error, content) {
@@ -82,6 +85,29 @@ It will give this output:
   ]
 }
 ```
+
+### Formatting
+
+```javascript
+console.log(arff.format(require('./relation')));
+```
+
+Which will display:
+
+```arff
+@RELATION foo
+
+@ATTRIBUTE date date
+@ATTRIBUTE dateWithFormat date "MM/DD/YY"
+@ATTRIBUTE numeric numeric
+@ATTRIBUTE string string
+@ATTRIBUTE enumerate {"foo","bar","baz"}
+
+@DATA
+"2014-12-16T19:42:01+00:00","06/23/15",3.259,"can have spaces","bar"
+"2014-12-16T19:42:01+00:00",?,42,?,?
+```
+
 
 ## Contributing
 

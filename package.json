@@ -1,6 +1,6 @@
 {
   "name": "arff",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "ISC",
   "description": "ARFF parsing and formatting",
   "keywords": [

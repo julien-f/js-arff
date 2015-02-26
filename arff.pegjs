@@ -148,7 +148,7 @@ string 'string' = chars:(rawString / singleQuotedString / doubleQuotedString) {
 	return chars.join('');
 }
 
-rawString = [^ \r\n\t'",]i+
+rawString = [^ \r\n\t'",{}]i+
 
 singleQuotedString = "'" chars:([^'\\] / escapedChar)* "'" {
 	return chars;

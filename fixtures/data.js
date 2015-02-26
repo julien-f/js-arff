@@ -26,6 +26,13 @@ module.exports = {
         'bar',
         'baz'
       ]
+    },
+    {
+      name: 'rawStringAtTheEndOfEnumerate',
+      type: 'enum',
+      values: [
+        'rawString'
+      ]
     }
   ],
   data: [

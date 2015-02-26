@@ -5,7 +5,8 @@
 @ATTRIBUTE numeric numeric
 @ATTRIBUTE string string
 @ATTRIBUTE enumerate {"foo","bar","baz"}
+@ATTRIBUTE rawStringAtTheEndOfEnumerate {"rawString"}
 
 @DATA
-"2014-12-16T19:42:01+00:00","06/23/15",3.259,"can have spaces","bar"
-"2014-12-16T19:42:01+00:00",?,42,?,?
+"2014-12-16T19:42:01+00:00","06/23/15",3.259,"can have spaces","bar",?
+"2014-12-16T19:42:01+00:00",?,42,?,?,?

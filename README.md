@@ -9,7 +9,7 @@ Download [manually](https://github.com/julien-f/js-arff/releases) or with packag
 #### [npm](https://npmjs.org/package/arff)
 
 ```
-> npm install --save exec-promise
+> npm install --save arff
 ```
 
 ## Usage

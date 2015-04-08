@@ -116,7 +116,7 @@ the code.
 
 You may:
 
-- report any [issue](https://github.com/julien-f/human-format/issues)
+- report any [issue](https://github.com/julien-f/js-arff/issues)
   you've encountered;
 - fork and create a pull request.
 

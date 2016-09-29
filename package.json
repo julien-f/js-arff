@@ -28,8 +28,8 @@
     "parser.js"
   ],
   "devDependencies": {
-    "mocha": "3.1.0",
-    "must": "*",
+    "mocha": "^3.1.0",
+    "must": "^0.13.2",
     "pegjs": "^0.10.0"
   },
   "scripts": {

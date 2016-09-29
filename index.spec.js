@@ -1,31 +1,31 @@
-'use strict';
+'use strict'
 
-//====================================================================
+/* eslint-env mocha */
 
-var arff = require('./');
+// ====================================================================
 
-var readFile = require('fs').readFileSync;
+var arff = require('./')
 
-//====================================================================
+var readFile = require('fs').readFileSync
 
-var FIXTURES = __dirname + '/fixtures';
+// ====================================================================
 
-//====================================================================
+var FIXTURES = __dirname + '/fixtures' // eslint-disable-line no-path-concat
+
+// ====================================================================
 
 describe('arff', function () {
-
   it('parse()', function () {
-    var expected = require(FIXTURES + '/data');
-    var actual = arff.parse(readFile(FIXTURES + '/original.arff', 'utf8'));
+    var expected = require(FIXTURES + '/data')
+    var actual = arff.parse(readFile(FIXTURES + '/original.arff', 'utf8'))
 
-    actual.must.eql(expected);
-  });
+    actual.must.eql(expected)
+  })
 
   it('format()', function () {
-    var expected = readFile(FIXTURES + '/final.arff', 'utf8');
-    var actual = arff.format(require(FIXTURES + '/data'));
+    var expected = readFile(FIXTURES + '/final.arff', 'utf8')
+    var actual = arff.format(require(FIXTURES + '/data'))
 
-    actual.must.equal(expected);
-  });
-
-});
+    actual.must.equal(expected)
+  })
+})

@@ -30,14 +30,14 @@
   "devDependencies": {
     "mocha": "3.1.0",
     "must": "*",
-    "pegjs": "^0.8.0"
+    "pegjs": "^0.10.0"
   },
   "scripts": {
     "test": "mocha --require must *.spec.js",
-    "prepublish": "pegjs arff.pegjs parser.js"
+    "prepublish": "pegjs -o parser.js arff.pegjs"
   },
   "dependencies": {
-    "lodash.foreach": "^2.4.1",
+    "lodash.foreach": "^4.5.0",
     "moment": "^2.8.4"
   }
 }

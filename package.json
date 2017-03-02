@@ -28,11 +28,13 @@
     "parser.js"
   ],
   "devDependencies": {
+    "husky": "^0.13.1",
     "jest": "^19.0.2",
     "pegjs": "^0.10.0",
     "standard": "^9.0.0"
   },
   "scripts": {
+    "commitmsg": "yarn test",
     "dev-test": "jest --watch",
     "lint": "standard",
     "posttest": "npm run lint",

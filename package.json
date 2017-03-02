@@ -30,7 +30,7 @@
   "devDependencies": {
     "jest": "^19.0.2",
     "pegjs": "^0.10.0",
-    "standard": "^8.2.0"
+    "standard": "^9.0.0"
   },
   "scripts": {
     "dev-test": "jest --watch",

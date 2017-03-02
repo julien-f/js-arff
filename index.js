@@ -10,7 +10,7 @@ var moment = require('moment')
 var EOL = '\n'
 
 function encode (val, attr) {
-  var type = attr && attr.type || 'string'
+  var type = (attr && attr.type) || 'string'
 
   if (type === 'numeric') {
     return +val

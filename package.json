@@ -28,16 +28,16 @@
     "parser.js"
   ],
   "devDependencies": {
-    "mocha": "^3.1.0",
-    "must": "^0.13.2",
+    "jest": "^19.0.2",
     "pegjs": "^0.10.0",
     "standard": "^8.2.0"
   },
   "scripts": {
+    "dev-test": "jest --watch",
     "lint": "standard",
     "posttest": "npm run lint",
     "prepublish": "pegjs -o parser.js arff.pegjs",
-    "test": "mocha --require must *.spec.js"
+    "test": "jest"
   },
   "dependencies": {
     "lodash.foreach": "^4.5.0",

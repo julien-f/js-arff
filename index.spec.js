@@ -1,6 +1,6 @@
 'use strict'
 
-/* eslint-env mocha */
+/* eslint-env jest */
 
 // ====================================================================
 
@@ -19,13 +19,13 @@ describe('arff', function () {
     var expected = require(FIXTURES + '/data')
     var actual = arff.parse(readFile(FIXTURES + '/original.arff', 'utf8'))
 
-    actual.must.eql(expected)
+    expect(actual).toEqual(expected)
   })
 
   it('format()', function () {
     var expected = readFile(FIXTURES + '/final.arff', 'utf8')
     var actual = arff.format(require(FIXTURES + '/data'))
 
-    actual.must.equal(expected)
+    expect(actual).toBe(expected)
   })
 })

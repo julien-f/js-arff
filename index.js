@@ -2,7 +2,7 @@
 
 // ====================================================================
 
-var forEach = require('lodash.foreach')
+var forEach = require('lodash/forEach')
 var moment = require('moment')
 
 // ====================================================================

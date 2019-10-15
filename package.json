@@ -28,13 +28,12 @@
     "parser.js"
   ],
   "devDependencies": {
-    "husky": "^0.13.1",
-    "jest": "^19.0.2",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "pegjs": "^0.10.0",
-    "standard": "^9.0.0"
+    "standard": "^14.3.1"
   },
   "scripts": {
-    "commitmsg": "yarn test",
     "dev-test": "jest --watch",
     "lint": "standard",
     "posttest": "npm run lint",
@@ -45,5 +44,10 @@
     "lodash": "^4.17.4",
     "lodash.foreach": "^4.5.0",
     "moment": "^2.8.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }

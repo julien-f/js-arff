@@ -22,8 +22,6 @@ function encode (val, attr) {
 }
 
 function isDefined (val) {
-  /* jshint eqnull:true */
-
   return val != null
 }
 

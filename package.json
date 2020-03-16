@@ -23,6 +23,9 @@
     "email": "julien.fontanet@isonoe.net"
   },
   "preferGlobal": false,
+  "engines": {
+    "node": ">=6.0"
+  },
   "files": [
     "index.js",
     "parser.js"
